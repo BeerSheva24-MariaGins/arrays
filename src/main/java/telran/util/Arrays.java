@@ -16,10 +16,7 @@ public static int[] add(int [] ar, int number) {
 }
 
 public static int[] insert(int[] ar, int index, int number) {
-    if (index < 0 || index > ar.length) {
-        throw new IllegalArgumentException("Invalid index");
-    }
-
+    
     int[] res = new int[ar.length + 1];
     System.arraycopy(ar, 0, res, 0, index); 
     res[index] = number; 
@@ -29,10 +26,7 @@ public static int[] insert(int[] ar, int index, int number) {
 }
 
 public static int[] remove(int[] numbers, int index) {
-    if (index < 0 || index >= numbers.length) {
-        throw new IllegalArgumentException("Invalid index");
-    }
-
+    
     int[] res = new int[numbers.length - 1];
     System.arraycopy(numbers, 0, res, 0, index); 
     System.arraycopy(numbers, index + 1, res, index, numbers.length - index - 1);
