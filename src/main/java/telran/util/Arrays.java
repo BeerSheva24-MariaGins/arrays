@@ -111,13 +111,12 @@ public class Arrays {
             }
         }
         if (count == 2) {
-            swap(arrSorted, temp[0], temp[1]);
-        }
-        if (arrSorted == array) {
             return true;
-        }    
+        }          
         return false;
     }
+    
+
     public static int [] isOneSwapArr(int [] arra) {
         int[] arrSorted = new int[arra.length];
         System.arraycopy(arra, 0, arrSorted, 0, arra.length);    
@@ -131,11 +130,9 @@ public class Arrays {
             }
         }
         if (count == 2) {
-            swap(arrSorted, temp[0], temp[1]);
-        }
-        if (arrSorted == arra) {
             return arrSorted;
-        }    
+        }
+          
         return arra;
     }
 }

@@ -90,21 +90,24 @@ public class ArraysTest {
         assertArrayEquals(expEnd, insertSorted(testAr, 1000));
         assertArrayEquals(exp1, insertSorted(testAr1, 1));
 
-    }
+    }  
 
     @Test
-    void isOneSwapArr() {
-        int[] testSwap = { 2, 3, 7, 5, 4, 8, 9 };
-        int[] expect = { 2, 3, 4, 5, 7, 8, 9 };
+    void isOneSwapTest() {
+        int[] testSwap = {2, 3, 7, 5, 4, 9};
+        int[] testSwap1 = {2, 3, 7, 5, 6, 9};
+        int[] testSwap2 = {2, 3, 4, 5, 6, 9};
+        
+        assertTrue(isOneSwap(testSwap));
+        assertFalse(isOneSwap(testSwap1));
+        assertFalse(isOneSwap(testSwap2));
+        
+    }
+    @Test
+    void isOneSwapArrTest() {
+        int[] testSwap = {2, 3, 7, 5, 4, 8, 9};
+        int[] expect = {2, 3, 4, 5, 7, 8, 9};
 
         assertArrayEquals(expect, isOneSwapArr(testSwap));
     }
-
-    // @Test
-    // void isOneSwap() {
-    //     int[] testSwap = { 2, 3, 7, 5, 4, 9 };
-    //     int[] expect = { 2, 3, 4, 5, 7, 8, 9 };
-
-    //     assertTrue(isOneSwap(testSwap));
-    // }
 }
