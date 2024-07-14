@@ -70,10 +70,11 @@ public class ArraysTest {
     @Test
     void binarySearchTest() {
         int[] testAr = { 1, 3, 4, 6, 10, 11, 12, 15, 17, 100 };
-        assertEquals(9, binarySearch(testAr, 100));
-        assertEquals(-1, binarySearch(testAr, 99));
+        assertEquals(2, binarySearch(testAr, 4));
+        assertEquals(-10, binarySearch(testAr, 99));
         assertEquals(0, binarySearch(testAr, 1));
-        assertEquals(-1, binarySearch(testAr, 200));
+        assertEquals(-11, binarySearch(testAr, 200));
+        assertEquals(-1, binarySearch(testAr, 0));
     }
 
     @Test

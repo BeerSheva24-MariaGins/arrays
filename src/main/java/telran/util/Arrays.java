@@ -65,38 +65,34 @@ public class Arrays {
     public static int binarySearch(int [] ar, int key) {
         int left = 0;
         int right = ar.length - 1;
+        int result = -1;
+        
         
         while (left <= right) {
-            int mid = left + (right - left) / 2;
+            int mid = (left + right) / 2;           
             if (ar[mid] == key) {
-                return mid;
+                result = mid;  
+                break;                             
             } else if (ar[mid] < key) {
                 left = mid +1;
             } else {
                 right = mid - 1;  
             }
+            result = -left - 1;            
         }
-        return -1;
+        return result;
     }
-    public static int [] insertSorted(int [] arSorted, int number) {    
-        int newSize = arSorted.length + 1;
-        int[] arSortedMod = new int[newSize];
-        System.arraycopy(arSorted, 0, arSortedMod, 0, arSorted.length);
-        int i = arSortedMod.length - 1;
-        arSortedMod[i] = arSortedMod[i - 1];
-
-        if (arSortedMod[newSize - 1] < number) {
-            arSortedMod[newSize - 1] = number;
-            return arSortedMod;
+    public static int [] insertSorted(int [] arSorted, int number) {        
+        int newIndex = binarySearch(arSorted, number);
+        int [] result;
+        if (newIndex > 0) {
+            result = insert(arSorted, newIndex, number);
+        } else {
+            result = insert(arSorted, -(newIndex + 1), number);
         }
-        
-        while (i > 0 && arSortedMod[i - 1] > number) {
-            arSortedMod[i] = arSortedMod[i - 1];
-            i--;
-        }
-        arSortedMod[i] = number;
-        return arSortedMod; 
+        return result;
     }
+       
 
     public static boolean isOneSwap(int [] array) {
         int[] arrSorted = new int[array.length];
@@ -110,10 +106,7 @@ public class Arrays {
                 count++;
             }
         }
-        if (count == 2) {
-            return true;
-        }          
-        return false;
+        return count == 2;
     }
     
 
