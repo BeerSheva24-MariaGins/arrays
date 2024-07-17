@@ -92,53 +92,57 @@ public class ArraysTest {
         assertArrayEquals(expEnd, insertSorted(testAr, 1000));
         assertArrayEquals(exp1, insertSorted(testAr1, 1));
 
-    }  
-   
+    }
+
     @Test
     void isOneSwapArrTest() {
-        int[] testSwap = {2, 3, 7, 5, 4, 8, 9};
-        int[] expect = {2, 3, 4, 5, 7, 8, 9};
+        int[] testSwap = { 2, 3, 7, 5, 4, 8, 9 };
+        int[] expect = { 2, 3, 4, 5, 7, 8, 9 };
 
         assertArrayEquals(expect, isOneSwapArr(testSwap));
     }
+
     @Test
     void isOneSwapTest() {
-        
-        int [] arTrue1 = {1, 2, 10, 4, 7, 3};
-        int [] arTrue2 = {1, 2, 10, 4, 4, 20};
-        int [] arTrue3 = {1, 2, 10, 4, 20, 30};
-        int [] arTrue4 = {10, 2, 1, 10, 20, 30};
-        int [] arFalse1 = {20, 3, 3, 10, 20, 30};
-        int []arFalse2 = {1, 2, 10, 4, 7, 5};
-        int []arFalse3 = {1, 2, 3, 4, 5, 10};
-        int [][] arraysTrue = {arTrue1, arTrue2, arTrue3, arTrue4};
-        int [][] arraysFalse = {arFalse1, arFalse2, arFalse3};
-        for(int i = 0; i < arraysTrue.length; i++) {
+
+        int[] arTrue1 = { 1, 2, 10, 4, 7, 3 };
+        int[] arTrue2 = { 1, 2, 10, 4, 4, 20 };
+        int[] arTrue3 = { 1, 2, 10, 4, 20, 30 };
+        int[] arTrue4 = { 10, 2, 1, 10, 20, 30 };
+        int[] arFalse1 = { 20, 3, 3, 10, 20, 30 };
+        int[] arFalse2 = { 1, 2, 10, 4, 7, 5 };
+        int[] arFalse3 = { 1, 2, 3, 4, 5, 10 };
+        int[][] arraysTrue = { arTrue1, arTrue2, arTrue3, arTrue4 };
+        int[][] arraysFalse = { arFalse1, arFalse2, arFalse3 };
+        for (int i = 0; i < arraysTrue.length; i++) {
             assertTrue(isOneSwap(arraysTrue[i]), "" + (i + 1));
         }
-        for(int i = 0; i < arraysFalse.length; i++) {
+        for (int i = 0; i < arraysFalse.length; i++) {
             assertFalse(isOneSwap(arraysFalse[i]), "" + (i + 1));
         }
     }
-        @Test
-        void sortAnyTypeTest() {
-            String [] strings = {"lmn", "cfta", "w", "aa"};
-            String [] expectedASCII = {"aa", "cfta", "lmn", "w"};
-            String [] expectedLength = {"w", "aa", "lmn", "cfta"};
-            sort(strings, new ComparatorASCII());
-            assertArrayEquals(expectedASCII, strings);
-            sort(strings, new ComparatorLength());
-            assertArrayEquals(expectedLength, strings);
-        }
-        @Test
-        void binarySearchAnyTypeTest() {
-            Integer [] testAr = { 1, 3, 4, 6, 10, 11, 12, 15, 17, 100 };            
-            assertEquals(5, binarySearchAny(testAr, 11, new CompInteger()));
-            String [] expectedASCII = {"aa", "cfta", "lmn", "w"};
-            String [] expectedLength = {"w", "aa", "lmn", "cfta"};            
-            assertEquals(3, binarySearchAny(expectedASCII, "w", new ComparatorASCII()));
-            assertEquals(1, binarySearchAny(expectedLength, "aa", new ComparatorLength()));
 
-        }
+    @Test
+    void sortAnyTypeTest() {
+        String[] strings = { "lmn", "cfta", "w", "aa" };
+        String[] expectedASCII = { "aa", "cfta", "lmn", "w" };
+        String[] expectedLength = { "w", "aa", "lmn", "cfta" };
+        sort(strings, new ComparatorASCII());
+        assertArrayEquals(expectedASCII, strings);
+        sort(strings, new ComparatorLength());
+        assertArrayEquals(expectedLength, strings);
     }
 
+    @Test
+    void binarySearchAnyTypeTest() {
+        Integer[] testAr = { 1, 3, 4, 6, 10, 11, 12, 15, 17, 100 };
+        Integer[] testAr1 = {1000, 2000};
+        assertEquals(0, binarySearchAny(testAr, 1, new CompInteger()));
+        assertEquals(0, binarySearchAny(testAr1, 1000, new CompInteger()));
+        String[] expectedASCII = { "aa", "cfta", "lmn", "w" };
+        String[] expectedLength = { "w", "aa", "lmn", "cfta" };
+        assertEquals(3, binarySearchAny(expectedASCII, "w", new ComparatorASCII()));
+        assertEquals(1, binarySearchAny(expectedLength, "aa", new ComparatorLength()));
+
+    }
+}

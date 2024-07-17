@@ -150,11 +150,26 @@ public class Arrays {
         array[j] = tmp;
     }
 
+    // public static <T> int binarySearchAny(T[] array, T key, Comparator<T> comp) {
+    //     int left = 0;
+    //     int right = array.length - 1;
+    //     int middle = (left + right) / 2;
+    //     while (left <= right && array[middle] != key) {
+    //         if (comp.compare(array[middle], key) > 0) {
+    //             right = middle - 1;
+    //         } else {
+    //             left = middle + 1;
+    //         }
+    //         middle = (left + right) / 2;
+    //     }
+    //     return left > right ? -(left + 1) : middle;
+
+    // }
     public static <T> int binarySearchAny(T[] array, T key, Comparator<T> comp) {
         int left = 0;
         int right = array.length - 1;
         int middle = (left + right) / 2;
-        while (left <= right && array[middle] != key) {
+        while (left <= right && comp.compare(array[middle], key) != 0) {
             if (comp.compare(array[middle], key) > 0) {
                 right = middle - 1;
             } else {
@@ -163,6 +178,6 @@ public class Arrays {
             middle = (left + right) / 2;
         }
         return left > right ? -(left + 1) : middle;
-    
+
     }
 }
