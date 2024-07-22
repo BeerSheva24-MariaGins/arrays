@@ -136,7 +136,7 @@ public class ArraysTest {
     @Test
     void binarySearchAnyTypeTest() {
         Integer[] testAr = { 1, 3, 4, 6, 10, 11, 12, 15, 17, 100 };
-        Integer[] testAr1 = {1000, 2000};
+        Integer[] testAr1 = { 1000, 2000 };
         assertEquals(0, binarySearchAny(testAr, 1, new CompInteger()));
         assertEquals(0, binarySearchAny(testAr1, 1000, new CompInteger()));
         String[] expectedASCII = { "aa", "cfta", "lmn", "w" };
@@ -144,5 +144,42 @@ public class ArraysTest {
         assertEquals(3, binarySearchAny(expectedASCII, "w", new ComparatorASCII()));
         assertEquals(1, binarySearchAny(expectedLength, "aa", new ComparatorLength()));
 
+    }
+
+    @Test
+    void binarySearchNoComparator() {
+        String[] strings = { "aa", "cfta", "lmn", "w" };
+        Person prs1 = new Person(10, "Vasya");
+        Person prs2 = new Person(20, "Itay");
+        Person prs3 = new Person(30, "Sara");
+        Person[] persons = {
+                prs1, prs2, prs3
+        };
+        assertEquals(1, binarySearchWithoutComporator(strings, "cfta"));
+        assertEquals(0, binarySearchWithoutComporator(persons, prs1));
+        assertEquals(-1, binarySearchWithoutComporator(persons, new Person(5, "Serg")));
+    }
+
+    @Test
+    void evenOddSorting() {
+        Integer[] array = { 7, -8, 10, -100, 13, -10, 99 };
+        Integer[] expected = { -100, -10, -8, 10, 99, 13, 7 }; // even numbers in ascending order first, odd in
+                                                               // descending order after that
+        sort(array, new EvenOddComparator());
+        assertArrayEquals(expected, array);
+    }
+
+    @Test
+    void findTest() {
+        Integer[] array = { 7, -8, 10, -100, 13, -10, 99 };
+        Integer[] expected = { 7, 13, 99 };
+        assertArrayEquals(expected, find(array, new OddNumbersPredicate()));
+    }
+
+    @Test
+    void removeIfTest() {
+        Integer[] array = { 7, -8, 10, 18, 24, 99, 98, -97 };
+        Integer[] expected = { -8, 10, 18, 24, 98 };
+        assertArrayEquals(expected, removeIf(array, new OddNumbersPredicate()));
     }
 }
