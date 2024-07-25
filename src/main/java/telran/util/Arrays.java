@@ -167,6 +167,7 @@ public class Arrays {
 
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> int binarySearchWithoutComporator(T[] array, T key) {
         return binarySearchAny(array, key, (Comparator<T>) Comparator.naturalOrder());
 
@@ -193,4 +194,39 @@ public class Arrays {
     public static <T> T[] removeIf(T[] array, Predicate<T> predicate) {
         return find(array, predicate.negate());
     }
+
+    /**
+     * 
+     * @param chars
+     * @return
+     */
+    
+    public static String matchesRules(char[] chars, CharacterRule[] mustBeRules, CharacterRule[] mustNotBeRules) {
+        StringBuilder message = new StringBuilder();
+    
+        for (CharacterRule rule : mustBeRules) {
+            boolean flag = false;
+            for (char ch : chars) {
+                if (rule.getPredicate().test(ch)) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                message.append("No match for must-be rule: ").append(rule.getErrorMessage()).append("; ");
+            }
+        }
+    
+        for (CharacterRule rule : mustNotBeRules) {
+            for (char ch : chars) {
+                if (rule.getPredicate().test(ch)) {
+                    message.append("Match found for must-not-be rule: ").append(rule.getErrorMessage()).append("; ");
+                    break;
+                }
+            }
+        }
+    
+        return message.toString();
+    }
 }
+
